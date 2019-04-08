@@ -1,0 +1,7 @@
+ insert into FishFarm
+  values ('123456789',50,'cairo','fucked up','A',5,6,null,'sayed','abk')
+
+  insert into FishFarm
+  values ('987654321',50,'cairo','fucked up','A',5,6,null,'sayed','abk')
+  insert into FishFarm
+  values ('123450000',50,'cairo','not fucked up','A',5,6,null,'khairy','abk')
