@@ -1,5 +1,8 @@
 --Create DataBase called "ReNile" --
-CREATE DATABASE ReNile 
+CREATE DATABASE ReNile
+-- Using the database to add the tables-- 
+USE DATABASE ReNile
+Go
  -- Create the Tables --
  CREATE TABLE FishFarm (
 	ID VARCHAR(9) NOT NULL,
