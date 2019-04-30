@@ -65,7 +65,7 @@ namespace Company
         }
         public DataTable ViewFarm(string ID)
         {
-            string query = "SELECT * FROM FishFarm WHERE ID='"+ID+"';";
+            string query = "SELECT * FROM FishFarm WHERE DOCTORID='"+ID+"';";
             return dbMan.ExecuteTableQuery(query);
         }
         public DataTable ViewOwnerAccount(string code)
