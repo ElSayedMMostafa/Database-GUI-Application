@@ -15,10 +15,10 @@ namespace Company
             dbMan = new DBManager();
         }
 
-       public int InsertFarm(string ID, string Size, string City, string FarmState, string Automated, string PH = "NULL", string DO = "NULL")
+        public int InsertFarm(string ID, string Size, string City, string FarmState, string Automated, string PH= NULL, string DO= NULL, string code, string DID, string EID)
         {
             string query = "INSERT INTO FishFarm " +
-                            "Values ('" + ID + "'," + Size + ",'" + City + "','" + FarmState + "','" + Automated + "'," + PH + "," + DO + ",NULL" + ",NULL" + ",NULL" + ");";
+                            "Values ('" + ID + "'," + Size + ",'" + City + "','" + FarmState + "','" + Automated + "'," + PH + "," + DO + ",'"+code+"','"+DID+"','"+EID+"' );";
 
             return dbMan.UpdateData(query);
         }
