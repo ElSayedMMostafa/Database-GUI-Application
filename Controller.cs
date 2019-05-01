@@ -119,9 +119,9 @@ namespace Company
             string query = "SELECT FINANCIAL_ACCOUNT FROM FarmOwner WHERE code='" + code + "';";
             return dbMan.ExecuteTableQuery(query);
         }
-        public DataTable ViewImporterAccount(string name)
+        public DataTable ViewImporters(string name)
         {
-            string query = "SELECT I_FINANCIAL_ACCOUNT FROM Importers WHERE I_NAME='" + name + "';";
+            string query = "SELECT * FROM Importers";
             return dbMan.ExecuteTableQuery(query);
         }
         public int SendAlert(string ID,string DOCTORID, string Message)
@@ -133,6 +133,19 @@ namespace Company
         public void TerminateConnection()
         {
             dbMan.CloseConnection();
+        }
+        public int UpdateFarm(string ID, string FSize, string FAuto, string FPH, string FDO) //Modified by Sayed
+        {
+            string query = "UPDATE FishFarm SET SIZE='" + FSize + " ', AUTOMATED= ' " + FAuto + "', PH =" + FPH + "', DO= '" + FDO +
+            "' WHERE ID ='" + ID + "';";
+            return dbMan.UpdateData(query);
+        }
+        //Update:
+
+        public int DeleteFarm(string FID)
+        {
+            string query = "DELETE FROM FishFarm WHERE ID ='" + FID + "';";
+            return dbMan.UpdateData(query);
         }
 
     }
