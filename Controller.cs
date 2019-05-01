@@ -28,6 +28,11 @@ namespace Company
 
             return dbMan.UpdateData(query);
         }
+        public int AddProduct(string manufacturer, string type, string quantity, string price)
+        {
+            string query = "INSERT INTO Products VALUES('" + manufacturer + "','" + type + "'," + quantity + "," + price + ");";
+            return dbMan.UpdateData(query);
+        }
         public int buyProduct(string manufacturer, string type, string code, string quantity, string total)
         {
             string query = "INSERT INTO Buy VALUES('" + manufacturer + "','" + type + "','" + code + "'," + quantity + "," + total + ");";
@@ -57,6 +62,42 @@ namespace Company
             string query = "SELECT * FROM FishFarm;";
             return dbMan.ExecuteTableQuery(query);
         }
+        public DataTable ViewManufacturer(string type)
+        {
+
+            string query = "SELECT MANUFACTURER FROM Products WHERE PTYPE= '" + type + "';";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewTypes(string MANUFACTURER)
+        {
+
+            string query = "SELECT PTYPE FROM Products WHERE MANUFACTURER= '" + MANUFACTURER + "';";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewALLTypes()
+        {
+
+            string query = "SELECT PTYPE FROM Products ;";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewALLManufacturers()
+        {
+
+            string query = "SELECT MANUFACTURER FROM Products ;";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewALLProducts()
+        {
+
+            string query = "SELECT * FROM Products ;";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public int DeleteProduct(string Manufacturer, string type)
+        {
+
+            string query = "Delete FROM Products WHERE MANUFACTURER='"+Manufacturer+"' AND PTYPE='"+type+"';";
+            return dbMan.UpdateData(query);
+        }
         public DataTable DoctorView(string ID)
         {
 
@@ -66,6 +107,11 @@ namespace Company
         public DataTable ViewFarm(string ID)
         {
             string query = "SELECT * FROM FishFarm WHERE DOCTORID='"+ID+"';";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewFarmbyOwner(string Code)
+        {
+            string query = "SELECT * FROM FishFarm WHERE CODE='" + Code + "';";
             return dbMan.ExecuteTableQuery(query);
         }
         public DataTable ViewOwnerAccount(string code)
@@ -78,10 +124,10 @@ namespace Company
             string query = "SELECT I_FINANCIAL_ACCOUNT FROM Importers WHERE I_NAME='" + name + "';";
             return dbMan.ExecuteTableQuery(query);
         }
-        public DataTable SendAlert(string Ocode, string ID)
+        public int SendAlert(string ID,string DOCTORID, string Message)
         {
-            string query = "SELECT Alert FROM Meet WHERE Ocode='" + Ocode + "' AND DOCTORID='"+ID+"';";
-            return dbMan.ExecuteTableQuery(query);
+            string query = "INSERT INTO Alerts VALUES('" + ID + "','" + DOCTORID + "','" + Message + "');";
+            return dbMan.UpdateData(query);
         }
 
         public void TerminateConnection()
