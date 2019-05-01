@@ -119,7 +119,7 @@ namespace Company
             string query = "SELECT FINANCIAL_ACCOUNT FROM FarmOwner WHERE code='" + code + "';";
             return dbMan.ExecuteTableQuery(query);
         }
-        public DataTable ViewImporters(string name)
+        public DataTable ViewImporters()
         {
             string query = "SELECT * FROM Importers";
             return dbMan.ExecuteTableQuery(query);
