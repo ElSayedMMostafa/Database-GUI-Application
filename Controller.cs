@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 using System.Windows.Forms;
 
-namespace Company
+namespace GUIProject
 {
     public class Controller
     {
@@ -22,7 +22,7 @@ namespace Company
 
             return dbMan.UpdateData(query);
         }
-        public int InsertDoctor(string ID, string FName,string LName, string Addr, string Phone)
+        public int InsertDoctor(string ID, string FName, string LName, string Addr, string Phone)
         {
             string query = "INSERT INTO Doctor VALUES('" + ID + "','" + FName + "','" + LName + "','" + Addr + "','" + Phone + "');";
 
@@ -40,9 +40,9 @@ namespace Company
             return dbMan.UpdateData(query);
         }
 
-        public int EditProduct(string quantity, string price,string manufacutrer, string type)
+        public int EditProduct(string quantity, string price, string manufacutrer, string type)
         {
-            string query = "UPDATE Products SET quantity=" + quantity + " AND Price=" + price + " WHERE MANUFACTURER ='"+manufacutrer+"'AND PTYPE='" + type + "';";
+            string query = "UPDATE Products SET QUNATITY=" + quantity + " , PRICE=" + price + " WHERE MANUFACTURER ='" + manufacutrer + "'AND PTYPE='" + type + "';";
             return dbMan.UpdateData(query);
         }
         public int InsertFishType(string FType, string ID)
@@ -50,12 +50,12 @@ namespace Company
             string query = "INSERT INTO FishType VALUES('" + FType + "','" + ID + "');";
             return dbMan.UpdateData(query);
         }
-        public int RequestMeeting(string code, string ID,string date,string Alert)
+        public int RequestMeeting(string code, string ID, string date, string Alert)
         {
-            string query = "INSERT INTO Meet VALUES('" + code + "','" + ID + "','"+date+"','"+Alert+"');";
+            string query = "INSERT INTO Meet VALUES('" + code + "','" + ID + "','" + date + "','" + Alert + "');";
             return dbMan.UpdateData(query);
         }
-        
+
         public DataTable ViewAllFarms()
         {
 
@@ -92,21 +92,33 @@ namespace Company
             string query = "SELECT * FROM Products ;";
             return dbMan.ExecuteTableQuery(query);
         }
+        public int InsertImporter(string IFAccount, string IName, string Manu, string PType)
+        {
+            string query = "INSERT INTO Importers " +
+                            "Values ('" + IFAccount + "','" + IName + "','" + Manu + "','" + PType + "');";
+
+            return dbMan.UpdateData(query);
+        }
         public int DeleteProduct(string Manufacturer, string type)
         {
 
-            string query = "Delete FROM Products WHERE MANUFACTURER='"+Manufacturer+"' AND PTYPE='"+type+"';";
+            string query = "Delete FROM Products WHERE MANUFACTURER='" + Manufacturer + "' AND PTYPE='" + type + "';";
             return dbMan.UpdateData(query);
         }
         public DataTable DoctorView(string ID)
         {
 
-            string query = "CREATE VIEW DoctorView AS SELECT PH, DO,FarmState,AUTOMATED FROM FishFarm where ID='"+ ID +"';";
+            string query = "CREATE VIEW DoctorView AS SELECT PH, DO,FarmState,AUTOMATED FROM FishFarm where ID='" + ID + "';";
             return dbMan.ExecuteTableQuery(query);
         }
         public DataTable ViewFarm(string ID)
         {
-            string query = "SELECT * FROM FishFarm WHERE DOCTORID='"+ID+"';";
+            string query = "SELECT * FROM FishFarm WHERE DOCTORID='" + ID + "';";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewFarmByItsID(string ID)
+        {
+            string query = "SELECT * FROM FishFarm WHERE ID='" + ID + "';";
             return dbMan.ExecuteTableQuery(query);
         }
         public DataTable ViewFarmbyOwner(string Code)
@@ -124,7 +136,7 @@ namespace Company
             string query = "SELECT * FROM Importers";
             return dbMan.ExecuteTableQuery(query);
         }
-        public int SendAlert(string ID,string DOCTORID, string Message)
+        public int SendAlert(string ID, string DOCTORID, string Message)
         {
             string query = "INSERT INTO Alerts VALUES('" + ID + "','" + DOCTORID + "','" + Message + "');";
             return dbMan.UpdateData(query);
@@ -147,6 +159,5 @@ namespace Company
             string query = "DELETE FROM FishFarm WHERE ID ='" + FID + "';";
             return dbMan.UpdateData(query);
         }
-
     }
 }
