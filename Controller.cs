@@ -142,10 +142,7 @@ namespace GUIProject
             return dbMan.UpdateData(query);
         }
 
-        public void TerminateConnection()
-        {
-            dbMan.CloseConnection();
-        }
+ 
         public int UpdateFarm(string ID, string FSize, string FAuto, string FPH, string FDO) //Modified by Sayed
         {
             string query = "UPDATE FishFarm SET SIZE='" + FSize + " ', AUTOMATED= ' " + FAuto + "', PH =" + FPH + "', DO= '" + FDO +
@@ -158,6 +155,28 @@ namespace GUIProject
         {
             string query = "DELETE FROM FishFarm WHERE ID ='" + FID + "';";
             return dbMan.UpdateData(query);
+        }
+        /// <log in>
+        /// this is the functions related to log in 
+        public DataTable ViewImporterAccount(string username, string password)
+        {
+            string query = "SELECT ID FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewImporterAccount(string username, string password)
+        {
+            string query = "SELECT Access FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        public DataTable ViewImporterAccount(string username, string password)
+        {
+            string query = "SELECT Fname,Lname FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
+            return dbMan.ExecuteTableQuery(query);
+        }
+        /// </log in>
+        public void TerminateConnection()
+        {
+            dbMan.CloseConnection();
         }
     }
 }
