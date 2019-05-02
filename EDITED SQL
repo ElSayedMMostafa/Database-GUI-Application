@@ -1,7 +1,7 @@
 --Create DataBase called "ReNile" --
 CREATE DATABASE ReNile
 -- Using the database to add the tables-- 
-USE DATABASE ReNile
+USE ReNile
 Go
  -- Create the Tables --
  CREATE TABLE FishFarm (
@@ -12,6 +12,12 @@ Go
 	AUTOMATED VARCHAR(1),
 	PH INTEGER,
 	DO INTEGER,
+	CODE VARCHAR(9),
+	DOCTORID VARCHAR(9),
+	EMPLOYEEID VARCHAR(9),
+	FOREIGN KEY (CODE) REFERENCES FarmOwner,
+	FOREIGN KEY (DOCTORID) REFERENCES Doctor,
+	FOREIGN KEY (EMPLOYEEID) REFERENCES Employee,
     PRIMARY KEY (ID),
  ); --
  CREATE TABLE FishType(
@@ -35,17 +41,13 @@ Go
 	FOREIGN KEY (MANUFACTURER,PTYPE) REFERENCES Products
  );--
  CREATE TABLE FarmOwner(
-	CODE VARCHAR(10),
+	CODE VARCHAR(9),
 	FINANCIAL_ACCOUNT VARCHAR(50),
 	PNAME VARCHAR(50),
 	LNAME VARCHAR(50),
 	PREMIUM_ACCOUNT VARCHAR(50),
 	PRIMARY KEY (CODE)
  );--
- ALTER TABLE FishFarm ADD CODE VARCHAR(10);
- ALTER TABLE FishFarm ADD DOCTORID VARCHAR(9);
- ALTER TABLE FishFarm ADD EMPLOYEEID VARCHAR(9);
- ALTER TABLE FishFarm ADD FOREIGN KEY (CODE) REFERENCES FarmOwner;
  CREATE TABLE Doctor(
  DOCTORID VARCHAR(9),
  DFNAME VARCHAR(50),
@@ -81,7 +83,7 @@ Go
  CREATE TABLE Buy(
  Pmanufacturer varchar(50),
  Ptype varchar(50),
- Ocode varchar(10),
+ Ocode varchar(9),
  quantity integer,
  total integer,
  PRIMARY KEY (Pmanufacturer,Ptype,Ocode),
@@ -89,7 +91,7 @@ Go
  FOREIGN KEY (Ocode) REFERENCES FarmOwner
  );
  CREATE TABLE Meet(
- Ocode varchar(10),
+ Ocode varchar(9),
  DOCTORID VARCHAR(9),
  MeetDate Date,
  Alert	varchar(1),
@@ -100,9 +102,17 @@ Go
 CREATE TABLE Alerts(
 ID varchar(9) NOT NULL,
 DOCTORID varchar(9) NOT NULL, 
-Message varchar(50),
+Message varchar(50) UNIQUE,
 FOREIGN KEY(ID) REFERENCES FishFarm,
 FOREIGN KEY(DOCTORID) REFERENCES Doctor,
 PRIMARY KEY(ID,DOCTORID)
-
+);
+CREATE TABLE logIn(
+ID varchar(9),
+username varchar(10) UNIQUE,
+password varchar(18),
+Access varchar(1),
+Fname varchar(50),
+Lname varchar(50),
+Primary KEY(ID)
 );
