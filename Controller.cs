@@ -158,20 +158,20 @@ namespace GUIProject
         }
         /// <log in>
         /// this is the functions related to log in 
-        public DataTable ViewImporterAccount(string username, string password)
+       public object ViewImporterAccount(string username, string password)
         {
             string query = "SELECT ID FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
-            return dbMan.ExecuteTableQuery(query);
+            return dbMan.ExecuteScalarQuery(query);
         }
-        public DataTable ViewImporterAccount(string username, string password)
+        public object ViewImporterAccount(string username, string password)
         {
             string query = "SELECT Access FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
-            return dbMan.ExecuteTableQuery(query);
+            return dbMan.ExecuteScalarQuery(query);
         }
-        public DataTable ViewImporterAccount(string username, string password)
+        public object ViewImporterAccount(string username, string password)
         {
             string query = "SELECT Fname,Lname FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
-            return dbMan.ExecuteTableQuery(query);
+            return dbMan.ExecuteScalarQuery(query);
         }
         /// </log in>
         public void TerminateConnection()
