@@ -142,7 +142,7 @@ namespace GUIProject
             return dbMan.UpdateData(query);
         }
 
- 
+
         public int UpdateFarm(string ID, string FSize, string FAuto, string FPH, string FDO) //Modified by Sayed
         {
             string query = "UPDATE FishFarm SET SIZE='" + FSize + " ', AUTOMATED= ' " + FAuto + "', PH =" + FPH + "', DO= '" + FDO +
@@ -158,19 +158,19 @@ namespace GUIProject
         }
         /// <log in>
         /// this is the functions related to log in 
-       public object ViewImporterAccount(string username, string password)
+        public object getID(string username, string password)
         {
             string query = "SELECT ID FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
             return dbMan.ExecuteScalarQuery(query);
         }
-        public object ViewImporterAccount(string username, string password)
+        public object getAccess(string username, string password)
         {
             string query = "SELECT Access FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
             return dbMan.ExecuteScalarQuery(query);
         }
-        public object ViewImporterAccount(string username, string password)
+        public object getFname(string username, string password)
         {
-            string query = "SELECT Fname,Lname FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
+            string query = "SELECT Fname FROM logIn WHERE username='" + username + "' AND password='" + password + "';";
             return dbMan.ExecuteScalarQuery(query);
         }
         /// </log in>
