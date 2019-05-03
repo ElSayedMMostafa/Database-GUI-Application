@@ -131,6 +131,11 @@ namespace GUIProject
             string query = "SELECT FINANCIAL_ACCOUNT FROM FarmOwner WHERE code='" + code + "';";
             return dbMan.ExecuteTableQuery(query);
         }
+        public DataTable ViewAllOwners()
+        {
+            string query = "SELECT CODE, PNAME,LNAME FROM FarmOwner;";
+            return dbMan.ExecuteTableQuery(query);
+        }
         public DataTable ViewImporters()
         {
             string query = "SELECT * FROM Importers";
@@ -154,6 +159,11 @@ namespace GUIProject
         public int DeleteFarm(string FID)
         {
             string query = "DELETE FROM FishFarm WHERE ID ='" + FID + "';";
+            return dbMan.UpdateData(query);
+        }
+        public int InsertOwner(string code, string FA, string PName, string LName, string PA)
+        {
+            string query = "INSERT INTO FarmOwner VALUES('" + code + "','" + FA + "','" + PName + "','" + LName + "','" + PA + "');";
             return dbMan.UpdateData(query);
         }
         /// <log in>
